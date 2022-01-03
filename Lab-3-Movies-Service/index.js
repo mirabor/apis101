@@ -15,20 +15,20 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
+const Movie = require('./app/models/movies.model')
 const db = require("./app/models");
 db.sequelize.sync();
-// // drop the table if it already exists
+// drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
 // });
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to movies application." });
 });
 
-require("./app/routes/turorial.routes")(app);
+require("./app/routes/movies.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
